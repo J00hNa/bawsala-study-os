@@ -1,11 +1,11 @@
-FROM node:22-bookworm-slim@sha256:53ada149d435c38b14476cb57e4a7da73c15595aba79bd6971b547ceb6d018bf AS build
+FROM node:26-bookworm-slim@sha256:e999d087492c7227c85adc70574cf9d3cce774c3e6d7b8dfe473ee6b142c8f2c AS build
 WORKDIR /src
 COPY package.json package-lock.json ./
 COPY tools ./tools
 COPY assets ./assets
 RUN node tools/build-assets.mjs
 
-FROM node:22-bookworm-slim@sha256:53ada149d435c38b14476cb57e4a7da73c15595aba79bd6971b547ceb6d018bf AS runtime
+FROM node:26-bookworm-slim@sha256:e999d087492c7227c85adc70574cf9d3cce774c3e6d7b8dfe473ee6b142c8f2c AS runtime
 ENV NODE_ENV=production \
     PORT=8080 \
     BAWSALA_DATA_DIR=/var/lib/bawsala \
