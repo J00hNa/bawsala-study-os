@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; manifest-src 'self'; worker-src 'self'; media-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'">
+  <meta name="theme-color" content="#100022"><meta name="color-scheme" content="light dark"><meta name="format-detection" content="telephone=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="فلاش كاردز مجانية بتكرار متباعد لطلاب التوجيهي وBTEC."><meta name="robots" content="noindex, nofollow">
+  <title>فلاش كاردز | بوصلة</title>
+  <script src="../assets/js/theme-boot.js?v=16.0.1"></script>
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../assets/img/logo.svg?v=16.0.1" type="image/svg+xml"><link rel="apple-touch-icon" sizes="192x192" href="../assets/img/icon-192.png?v=16.0.1">
+  <link rel="stylesheet" href="../assets/dist/bawsala-pixel.css?v=16.0.1">
+</head>
+<body data-page="flashcards">
+  <a class="skip-link" href="#main">تجاوز إلى المحتوى</a>
+  <div class="pixel-bg" aria-hidden="true"></div><div class="pixel-glow" aria-hidden="true"></div>
+  <div id="siteHeader"></div>
+  <main id="main" class="container">
+    <section class="page-title"><span class="kicker">// FLASHCARDS</span><h1>فلاش كاردز بتكرار متباعد.</h1><p class="muted">لا تراجع كل شيء كل يوم. راجع البطاقة عندما يحين وقتها. قيّم نفسك بوضوح: Again / Hard / Good / Easy، والنظام يضبط موعد المراجعة القادمة.</p></section><nav class="study-link-panel" aria-label="روابط تنفيذ مرتبطة"><a href="workspace.html#flashcards"><b>CARDS</b><span>مراجعة داخل حلقة اليوم</span></a><a href="workspace.html#errors"><b>ERRORS</b><span>حوّل الخطأ لبطاقة</span></a><a href="workspace.html#review"><b>REPORT</b><span>أغلق اليوم بتقرير</span></a></nav>
+    <section class="section-sm"><div class="dashboard-strip dashboard-strip-wide"><article class="stat"><b id="cardsTotal">0</b><span>بطاقات</span></article><article class="stat"><b id="cardsDue">0</b><span>مستحقة اليوم</span></article><article class="stat"><b id="cardsStrong">0</b><span>قوية</span></article><article class="stat"><b id="cardsWeak">0</b><span>ضعيفة</span></article></div></section>
+    <section class="section-sm split wide-split">
+      <aside class="card">
+        <h2>إضافة بطاقة</h2>
+        <form class="compact-form" id="cardForm">
+          <div class="field-row"><label class="field"><span>المجموعة</span><select name="deck" id="deckSelect"></select></label><label class="field"><span>المادة</span><input name="subject" placeholder="رياضيات" autocomplete="off"></label></div>
+          <label class="field"><span>وجه البطاقة / السؤال</span><input name="front" required placeholder="ما تعريف...؟" autocomplete="off"></label>
+          <label class="field"><span>الإجابة</span><textarea name="back" rows="4" required placeholder="الإجابة المختصرة مع مثال"></textarea></label>
+          <label class="field"><span>تلميح اختياري</span><input name="hint" placeholder="كلمة تساعدك قبل إظهار الجواب" autocomplete="off"></label>
+          <label class="field"><span>وسوم</span><input name="tags" placeholder="قانون، خطأ، مهم" autocomplete="off"></label>
+          <button class="btn primary full" type="submit">إضافة البطاقة</button>
+        </form>
+        <hr>
+        <div class="actions"><button class="btn secondary" id="seedCards" type="button">إضافة قوالب سريعة</button><button class="btn" id="copyCards" type="button">نسخ البطاقات</button></div>
+      </aside>
+      <section class="grid">
+        <article class="card review-panel" id="review"><div class="inline review-panel__head"><div><h2 class="flush-title">جلسة مراجعة</h2><p class="fine">ابدأ مساراً واضحاً بدل مراجعة عشوائية.</p></div><div class="actions"><button class="btn sm primary" id="startDueReview" type="button">ابدأ المستحق كمسار</button><select id="deckFilter" class="input compact-select" aria-label="تصفية حسب مجموعة البطاقات"></select></div></div><div id="reviewBox" class="review-box"></div></article>
+        <article class="card"><div class="resource-filters"><input id="cardSearch" aria-label="البحث داخل البطاقات" placeholder="ابحث داخل البطاقات" autocomplete="off"><select id="levelFilter" aria-label="تصفية حسب مستوى البطاقة"><option value="all">كل المستويات</option><option value="due">مستحقة اليوم</option><option value="late">متأخرة</option><option value="weak">ضعيفة</option><option value="strong">قوية</option><option value="archived">مؤرشفة</option></select></div><div class="grid grid-2 mt-16" id="cardsList"></div></article>
+      </section>
+    </section>
+  </main>
+  <div id="siteFooter"></div>
+  <script defer src="../assets/dist/bawsala-core.js?v=16.0.1"></script><script defer src="../assets/js/flashcards.js?v=16.0.1"></script><script defer src="../assets/dist/bawsala-enhancements.js?v=16.0.1"></script>
+</body>
+</html>

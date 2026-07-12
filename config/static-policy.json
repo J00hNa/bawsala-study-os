@@ -1,0 +1,18 @@
+{
+  "authProtectedPages": [
+    "/pages/account.html",
+    "/pages/settings.html",
+    "/pages/billing.html",
+    "/pages/support.html"
+  ],
+  "adminProtectedPages": [
+    "/pages/admin.html"
+  ],
+  "privateCachePaths": [
+    "/pages/account.html",
+    "/pages/settings.html",
+    "/pages/billing.html",
+    "/pages/support.html",
+    "/pages/admin.html"
+  ]
+}

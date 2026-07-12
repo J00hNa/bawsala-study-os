@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">Bawsala pixel study agent logo</title>
+  <desc id="desc">Pixel octopus compass mark in deep purple, cyan, magenta and yellow.</desc>
+  <rect width="64" height="64" fill="#1d0245"/>
+  <path fill="#642cc2" d="M24 10h16v6h6v16h-4v8h-4v6h-6v-6h-4v6h-6v-6h-4v-8h-4V16h6z"/>
+  <path fill="#7b38df" d="M18 18h28v12H18zM14 36h8v8h-8zM42 36h8v8h-8z"/>
+  <rect x="24" y="24" width="6" height="6" fill="#fff7ff"/>
+  <rect x="34" y="24" width="6" height="6" fill="#fff7ff"/>
+  <rect x="26" y="26" width="2" height="2" fill="#09051c"/>
+  <rect x="36" y="26" width="2" height="2" fill="#09051c"/>
+  <path fill="#31e8ff" d="M8 50h10v4H8zM46 50h10v4H46zM30 48h4v10h-4z"/>
+  <path fill="#ee3daf" d="M20 46h6v6h-6zM38 46h6v6h-6z"/>
+  <path fill="#ffca05" d="M30 6h4v8h-4zM30 14h4v4h-4z"/>
+</svg>

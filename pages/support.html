@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; manifest-src 'self'; worker-src 'self'; media-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'">
+  <meta name="theme-color" content="#100022"><meta name="color-scheme" content="light dark"><meta name="format-detection" content="telephone=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="مركز دعم بوصلة لفتح طلب مرتبط بالحساب ومتابعة حالته بأمان."><meta name="robots" content="noindex, nofollow">
+  <title>مركز الدعم | بوصلة</title>
+  <script src="../assets/js/theme-boot.js?v=16.0.1"></script>
+  <link rel="manifest" href="../manifest.webmanifest"><link rel="icon" href="../assets/img/logo.svg?v=16.0.1" type="image/svg+xml"><link rel="apple-touch-icon" sizes="192x192" href="../assets/img/icon-192.png?v=16.0.1"><link rel="stylesheet" href="../assets/dist/bawsala-pixel.css?v=16.0.1">
+</head>
+<body data-page="support" class="support-page">
+  <a class="skip-link" href="#main">تجاوز إلى المحتوى</a><div class="pixel-bg" aria-hidden="true"></div><div class="pixel-glow" aria-hidden="true"></div><div id="siteHeader"></div>
+  <main id="main" class="container">
+    <section class="page-title support-title"><span class="kicker">// ACCOUNT SUPPORT</span><h1>الدعم الذي يمكن تتبعه.</h1><p class="lead muted">افتح طلبًا واحدًا واضحًا، تابع حالته، واحتفظ بالمحادثة داخل حسابك بدل ضياعها بين الرسائل.</p></section>
+    <section class="support-layout section-sm">
+      <article class="card support-create-card">
+        <div class="section-heading"><div><span class="badge teal">طلب جديد</span><h2>اشرح المشكلة بدقة.</h2></div><small>لا ترسل كلمة مرور أو رمز تحقق.</small></div>
+        <form class="form-grid" id="supportForm">
+          <div class="field-row"><label class="field"><span>الفئة</span><select name="category"><option value="technical">عطل تقني</option><option value="account">الحساب والدخول</option><option value="sync">المزامنة والبيانات</option><option value="billing">الفوترة</option><option value="privacy">الخصوصية والحذف</option><option value="suggestion">اقتراح</option></select></label><label class="field"><span>الأولوية</span><select name="priority"><option value="normal">عادية</option><option value="high">مرتفعة — تمنعني من الاستخدام</option></select></label></div>
+          <label class="field"><span>العنوان</span><input name="subject" maxlength="140" required placeholder="مثلاً: لا أستطيع رفع بيانات هذا الجهاز" autocomplete="off"></label>
+          <label class="field"><span>ما الذي حدث؟</span><textarea name="message" rows="7" maxlength="5000" required placeholder="اكتب الخطوات، النتيجة المتوقعة، والنتيجة التي ظهرت. لا تكتب أسرار الحساب."></textarea></label>
+          <label class="checkline"><input name="consent" type="checkbox" required><span>أفهم أن الطلب سيرتبط بحسابي وسيظهر لفريق الدعم فقط.</span></label>
+          <button class="btn primary" type="submit">إرسال الطلب</button>
+          <p id="supportFormStatus" class="fine" role="status" aria-live="polite"></p>
+        </form>
+      </article>
+      <aside class="support-side">
+        <article class="card"><span class="badge green">قبل الإرسال</span><h2>حلول سريعة</h2><div class="support-shortcuts"><a href="status.html"><strong>حالة الخدمة</strong><small>تأكد أن الخادم يعمل.</small></a><a href="account.html"><strong>الحساب والجلسات</strong><small>تأكيد البريد وإلغاء الجلسات.</small></a><a href="settings.html"><strong>المزامنة</strong><small>رفع أو دمج نسخة الحساب.</small></a><a href="legal.html#privacy"><strong>الخصوصية</strong><small>التصدير والحذف والاحتفاظ.</small></a></div></article>
+        <article class="notice info"><strong>زمن الاستجابة التجريبي</strong><p>نستهدف الرد خلال يوم عمل. هذا هدف تشغيلي وليس ضمانًا تعاقديًا.</p></article>
+      </aside>
+    </section>
+    <section class="section-sm">
+      <div class="section-heading"><div><span class="kicker">// MY REQUESTS</span><h2>طلباتك السابقة.</h2></div><button class="btn secondary" id="refreshSupport" type="button">تحديث</button></div>
+      <div id="supportAuthGate" class="notice info" hidden></div>
+      <div id="supportTickets" class="support-ticket-list" aria-live="polite"></div>
+    </section>
+  </main>
+  <div id="siteFooter"></div>
+  <script defer src="../assets/dist/bawsala-core.js?v=16.0.1"></script><script defer src="../assets/js/support.js?v=16.0.1"></script><script defer src="../assets/dist/bawsala-enhancements.js?v=16.0.1"></script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; manifest-src 'self'; worker-src 'self'; media-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'">
+  <meta name="theme-color" content="#100022"><meta name="color-scheme" content="light dark"><meta name="format-detection" content="telephone=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="حالة خدمة بوصلة: فحص مباشر للموقع وواجهة API وجاهزية التخزين والمزامنة."><meta name="robots" content="index, follow">
+  <title>حالة الخدمة | بوصلة</title><meta property="og:type" content="website"><meta property="og:locale" content="ar_JO"><meta property="og:title" content="حالة الخدمة | بوصلة"><meta property="og:description" content="حالة خدمة بوصلة: فحص مباشر للموقع وواجهة API وجاهزية التخزين والمزامنة."><meta name="twitter:card" content="summary"><meta name="twitter:title" content="حالة الخدمة | بوصلة"><meta name="twitter:description" content="حالة خدمة بوصلة: فحص مباشر للموقع وواجهة API وجاهزية التخزين والمزامنة.">
+  <script src="../assets/js/theme-boot.js?v=16.0.1"></script>
+  <link rel="canonical" href="status.html">
+  <link rel="manifest" href="../manifest.webmanifest"><link rel="icon" href="../assets/img/logo.svg?v=16.0.1" type="image/svg+xml"><link rel="apple-touch-icon" sizes="192x192" href="../assets/img/icon-192.png?v=16.0.1"><link rel="stylesheet" href="../assets/dist/bawsala-pixel.css?v=16.0.1">
+</head>
+<body data-page="status" class="status-page">
+  <a class="skip-link" href="#main">تجاوز إلى المحتوى</a><div class="pixel-bg" aria-hidden="true"></div><div class="pixel-glow" aria-hidden="true"></div><div id="siteHeader"></div>
+  <main id="main" class="container">
+    <section class="page-title"><span class="kicker">// SERVICE STATUS</span><h1>حالة بوصلة الآن.</h1><p class="lead muted">فحص مباشر وخفيف. لا نعرض تفاصيل بنية الخادم أو الأسرار في الصفحة العامة.</p></section>
+    <section class="status-overview section-sm" id="statusOverview" aria-live="polite">
+      <div class="status-orb" data-status-orb><span></span></div><div><span class="badge gray" id="statusBadge">جارٍ الفحص</span><h2 id="statusTitle">نتحقق من الخدمة…</h2><p class="muted" id="statusMessage">سيظهر آخر وقت فحص وزمن الاستجابة خلال لحظات.</p></div><button class="btn secondary" id="refreshStatus" type="button">إعادة الفحص</button>
+    </section>
+    <section class="section-sm status-components" id="statusComponents">
+      <article class="card status-component"><span class="status-dot" data-component-dot="site"></span><div><h3>الموقع والواجهة</h3><p>تحميل الصفحات والملفات الأساسية.</p></div><strong data-component="site">فحص…</strong></article>
+      <article class="card status-component"><span class="status-dot" data-component-dot="api"></span><div><h3>الحسابات وواجهة API</h3><p>الاستجابة العامة ومسارات المصادقة.</p></div><strong data-component="api">فحص…</strong></article>
+      <article class="card status-component"><span class="status-dot" data-component-dot="storage"></span><div><h3>الجاهزية والتخزين</h3><p>قدرة الخدمة على العمل وقبول الطلبات.</p></div><strong data-component="storage">فحص…</strong></article>
+      <article class="card status-component"><span class="status-dot online"></span><div><h3>الأدوات المحلية</h3><p>الملاحظات والمؤقت والأدوات المحلية تعمل حتى عند انقطاع الشبكة.</p></div><strong>متاحة محليًا</strong></article>
+    </section>
+    <section class="section-sm grid grid-2">
+      <article class="card"><span class="badge teal">آخر فحص</span><dl class="status-facts"><div><dt>الإصدار</dt><dd id="statusVersion">—</dd></div><div><dt>زمن الاستجابة</dt><dd id="statusLatency">—</dd></div><div><dt>وقت الفحص</dt><dd id="statusCheckedAt">—</dd></div></dl></article>
+      <article class="card"><span class="badge blue">هل تواجه مشكلة؟</span><h2>لا تفترض أن العطل عام.</h2><p class="muted">إذا كانت الحالة سليمة والمشكلة مستمرة، افتح طلب دعم مع الخطوات التي أدت للعطل.</p><div class="actions"><a class="btn primary" href="support.html">مركز الدعم</a><a class="btn secondary" href="login.html">تسجيل الدخول</a></div></article>
+    </section>
+  </main>
+  <div id="siteFooter"></div>
+  <script defer src="../assets/dist/bawsala-core.js?v=16.0.1"></script><script defer src="../assets/js/status.js?v=16.0.1"></script><script defer src="../assets/dist/bawsala-enhancements.js?v=16.0.1"></script>
+</body>
+</html>

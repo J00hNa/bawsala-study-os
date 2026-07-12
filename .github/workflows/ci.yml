@@ -1,0 +1,219 @@
+name: Bawsala quality gates
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: bawsala-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  static-and-unit:
+    name: Static and unit (Node ${{ matrix.node }})
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ['22', '24']
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+      - name: Set up Node.js
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm run build
+      - run: npm run check
+      - run: npm test
+      - run: npm run artifact:check
+
+  browser:
+    name: Chromium mobile and desktop runtime
+    timeout-minutes: 20
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+      - name: Set up Node.js
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - name: Verify Chromium
+        run: command -v google-chrome || command -v chromium || command -v chromium-browser
+      - run: npm run test:frontend
+
+  integration-and-security:
+    name: Integration and security
+    timeout-minutes: 25
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+      - name: Set up Node.js
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm run test:integration
+      - run: npm run test:security
+      - run: npm audit --audit-level=high --omit=dev
+
+  coverage:
+    name: V8 coverage gate
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+      - name: Set up Node.js
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm run test:coverage
+
+  codeql:
+    name: CodeQL
+    timeout-minutes: 20
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      packages: read
+      security-events: write
+    steps:
+      - name: Check out source
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@99df26d4f13ea111d4ec1a7dddef6063f76b97e9 # v4.37.0
+        with:
+          languages: javascript-typescript
+      - name: Analyze
+        uses: github/codeql-action/analyze@99df26d4f13ea111d4ec1a7dddef6063f76b97e9 # v4.37.0
+
+  supply-chain:
+    name: Secrets, dependencies and SBOM
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out full history
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Scan repository history for secrets
+        uses: gitleaks/gitleaks-action@e0c47f4f8be36e29cdc102c57e68cb5cbf0e8d1e # v3.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Set up Node.js
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm audit --audit-level=high --omit=dev
+      - name: Generate and validate CycloneDX SBOM
+        run: |
+          npm sbom --sbom-format cyclonedx > sbom.cdx.json
+          node -e "const fs=require('node:fs'); const x=JSON.parse(fs.readFileSync('sbom.cdx.json','utf8')); if(x.bomFormat!=='CycloneDX'||!Array.isArray(x.components)) process.exit(1)"
+
+  container:
+    name: Container runtime and vulnerability scan
+    timeout-minutes: 20
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - name: Check out source
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+      - name: Build container
+        run: docker build --pull -t bawsala:${{ github.sha }} .
+      - name: Run production container
+        run: |
+          docker run -d --name bawsala-ci \
+            -p 127.0.0.1:8080:8080 \
+            -e NODE_ENV=production \
+            -e BAWSALA_ENFORCE_PRODUCTION_CONFIG=true \
+            -e BAWSALA_PUBLIC_BASE_URL=https://bawsala.example.test \
+            -e BAWSALA_ALLOWED_HOSTS=bawsala.example.test,127.0.0.1,localhost \
+            -e BAWSALA_SECURITY_PEPPER=ci-security-pepper-0123456789abcdef \
+            -e BAWSALA_PASSWORD_PEPPER=ci-password-pepper-0123456789abcdef \
+            -e BAWSALA_SETUP_ADMIN_TOKEN=ci-setup-admin-token-0123456789abcdef \
+            -e BAWSALA_ALLOW_ADMIN_BOOTSTRAP_HEADER=true \
+            -e BAWSALA_DISABLE_PUBLIC_SIGNUPS=true \
+            -e BAWSALA_BACKUP_ENCRYPTION_KEY=ci-backup-key-0123456789abcdef012345 \
+            -e BAWSALA_REQUIRE_OFFSITE_BACKUPS=false \
+            -e BAWSALA_BACKUP_ON_STARTUP=false \
+            -e BAWSALA_STORAGE=sqlite \
+            bawsala:${{ github.sha }}
+          for attempt in $(seq 1 40); do
+            status="$(docker inspect --format='{{.State.Health.Status}}' bawsala-ci 2>/dev/null || true)"
+            [ "$status" = healthy ] && exit 0
+            [ "$status" = unhealthy ] && break
+            sleep 2
+          done
+          docker logs bawsala-ci
+          exit 1
+      - name: Verify liveness from host
+        run: curl --fail --silent --show-error http://127.0.0.1:8080/api/health/live
+      - name: Scan the built image
+        uses: anchore/scan-action@e1165082ffb1fe366ebaf02d8526e7c4989ea9d2 # v7.4.0
+        with:
+          image: bawsala:${{ github.sha }}
+          fail-build: true
+          severity-cutoff: high
+      - name: Print container logs on failure
+        if: failure()
+        run: docker logs bawsala-ci || true
+      - name: Remove test container
+        if: always()
+        run: docker rm -f bawsala-ci || true
+
+  provenance:
+    name: Release provenance
+    if: github.event_name != 'pull_request'
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    permissions:
+      attestations: write
+      contents: read
+      id-token: write
+    steps:
+      - name: Check out source
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+      - name: Create deterministic source archive
+        run: |
+          tar --sort=name --mtime='UTC 2020-01-01' --owner=0 --group=0 --numeric-owner \
+            --exclude=.git --exclude=node_modules --exclude=data --exclude='*.zip' --exclude='*.log' \
+            -czf bawsala-source.tar.gz .
+      - name: Attest source archive
+        uses: actions/attest-build-provenance@0f67c3f4856b2e3261c31976d6725780e5e4c373 # v4.1.1
+        with:
+          subject-path: bawsala-source.tar.gz

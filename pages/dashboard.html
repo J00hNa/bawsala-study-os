@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; manifest-src 'self'; worker-src 'self'; media-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'">
+  <meta name="theme-color" content="#100022"><meta name="color-scheme" content="light dark"><meta name="format-detection" content="telephone=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="لوحة الطالب في بوصلة: ملخص، اقتراح ذكي، جدول يومي، جدول أسبوعي، وتتبع عادات."><meta name="robots" content="noindex, nofollow">
+  <title>لوحة الطالب | بوصلة</title>
+  <script src="../assets/js/theme-boot.js?v=16.0.1"></script>
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../assets/img/logo.svg?v=16.0.1" type="image/svg+xml"><link rel="apple-touch-icon" sizes="192x192" href="../assets/img/icon-192.png?v=16.0.1">
+  <link rel="stylesheet" href="../assets/dist/bawsala-pixel.css?v=16.0.1">
+</head>
+<body data-page="dashboard" class="student-dashboard-page">
+  <a class="skip-link" href="#main">تجاوز إلى المحتوى</a>
+  <div class="pixel-bg" aria-hidden="true"></div><div class="pixel-glow" aria-hidden="true"></div>
+  <div id="siteHeader"></div>
+  <main id="main" class="container">
+    <section class="dashboard-hero reveal">
+      <div>
+        <span class="kicker">// لوحة قرار اليوم</span>
+        <h1>لوحة قرار اليوم.</h1>
+        <p class="muted">هذه الصفحة لا تعرض كل شيء. وظيفتها أن تجبرك على قرار واحد: ماذا ستفعل الآن؟ كم دقيقة؟ وما الشيء الذي ستمنعه اليوم؟</p>
+        <div class="actions"><a class="btn primary" href="workspace.html#flow">ابدأ تنفيذ القرار</a><a class="btn secondary" href="workspace.html#mission">اكتب المهمة فقط</a></div>
+        <p class="private-label">الاقتراح الذكي محلي ويعتمد على بيانات البروفايل الحالي داخل جهازك.</p>
+      </div>
+      <aside class="dashboard-art"><img src="../assets/img/hero-compass.svg?v=16.0.1" alt="رسم توضيحي للوحة دراسة منظمة" loading="lazy" decoding="async" width="640" height="480"></aside>
+    </section>
+
+    <section class="section-sm dashboard-journey" id="dashboardJourney" aria-live="polite"></section>
+
+    <section class="section-sm activation-card" id="launchChecklist" aria-live="polite"></section>
+
+    <section class="section-sm dashboard-summary-grid" id="dashboardSummary"></section>
+
+    <section class="section-sm execution-guard" id="executionGuard"></section>
+
+    <section class="section-sm grid grid-2">
+      <article class="card smart-card" id="smartSuggestion"></article>
+      <article class="card"><span class="badge teal">عادات يدوية</span><h2>متتبع عادات يدوي</h2><form class="form-grid" id="habitForm"><div class="field-row"><input name="habitName" aria-label="اسم العادة" placeholder="مثلاً: 20 دقيقة مراجعة أخطاء" autocomplete="off"><button class="btn primary" type="submit">إضافة عادة</button></div></form><div class="grid" id="habitsList"></div></article>
+    </section>
+
+    <section class="section-sm grid grid-2">
+      <article class="card"><span class="badge blue">جدول اليوم</span><h2>جدول اليوم المقترح</h2><p class="muted">يتغير حسب الساعات اليومية، المهمة، الواجبات، البطاقات والأخطاء.</p><div class="timeline" id="dailySchedule"></div><div class="actions"><button class="btn primary" id="turnScheduleMission" type="button">حوّل أول خطوة إلى مهمة اليوم</button><a class="btn secondary" href="workspace.html#focus">ابدأ المؤقت</a></div></article>
+      <article class="card"><span class="badge green">الخطة الأسبوعية</span><h2>جدول أسبوعي عملي</h2><div class="grid" id="weeklyPlan"></div><div class="actions"><button class="btn primary" id="generateSprint" type="button">توليد أسبوع جديد</button><button class="btn danger" id="resetSprint" type="button">مسح الخطة</button></div></article>
+    </section>
+
+    <section class="section-sm grid grid-2">
+      <article class="card"><span class="badge gray">مهمة اليوم</span><h2>مهمة اليوم المختصرة</h2><form class="form-grid" id="missionForm"><label class="field"><span>المهمة</span><textarea name="missionText" rows="4" placeholder="درس واحد + 20 سؤال + تسجيل الأخطاء"></textarea></label><div class="field-row"><label class="field"><span>الدقائق</span><input name="missionMinutes" type="number" min="5" max="180" value="25" autocomplete="off"></label><label class="field"><span>المادة</span><input name="missionSubject" placeholder="المادة" autocomplete="off"></label></div><button class="btn primary" type="submit">حفظ المهمة</button></form><div class="notice" id="missionPreview">لا توجد مهمة محفوظة بعد.</div></article>
+      <article class="card"><span class="badge blue">التقرير</span><h2>تقرير سريع</h2><pre class="report-box" id="studentReport"></pre><div class="actions"><button class="btn" id="copyStudentReport" type="button">نسخ التقرير</button><button class="btn secondary" id="sendStudentReport" type="button">إرسال واتساب</button></div></article>
+    </section>
+
+    <section class="section"><div class="section-heading"><div><span class="kicker">// التنفيذ</span><h2>روابط التنفيذ الأساسية</h2></div><a class="btn secondary" href="workspace.html#library">مكتبة الأدوات</a></div><div class="quick-start-grid"><a class="btn primary" href="workspace.html#flow">نظرة اليوم</a><a class="btn" href="workspace.html#mission">مهمة اليوم</a><a class="btn" href="workspace.html#focus">جلسة التركيز</a><a class="btn" href="workspace.html#errors">دفتر الأخطاء</a><a class="btn" href="workspace.html#review">إغلاق اليوم</a></div></section>
+  </main>
+  <div id="siteFooter"></div>
+  <script defer src="../assets/dist/bawsala-core.js?v=16.0.1"></script><script defer src="../assets/js/dashboard.js?v=16.0.1"></script><script defer src="../assets/dist/bawsala-enhancements.js?v=16.0.1"></script>
+</body>
+</html>

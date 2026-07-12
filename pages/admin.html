@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; manifest-src 'self'; worker-src 'self'; media-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'">
+  <meta name="theme-color" content="#100022"><meta name="color-scheme" content="light dark"><meta name="format-detection" content="telephone=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="لوحة إدارة السيرفر في بوصلة للمديرين فقط."><meta name="robots" content="noindex, nofollow">
+  <title>لوحة الإدارة | بوصلة</title>
+  <script src="../assets/js/theme-boot.js?v=16.0.1"></script>
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../assets/img/logo.svg?v=16.0.1" type="image/svg+xml"><link rel="apple-touch-icon" sizes="192x192" href="../assets/img/icon-192.png?v=16.0.1">
+  <link rel="stylesheet" href="../assets/dist/bawsala-pixel.css?v=16.0.1">
+</head>
+<body data-page="admin">
+  <a class="skip-link" href="#main">تجاوز إلى المحتوى</a>
+  <div class="pixel-bg" aria-hidden="true"></div><div class="pixel-glow" aria-hidden="true"></div>
+  <div id="siteHeader"></div>
+  <main id="main" class="container">
+    <section class="page-title admin-sunset">
+      <span class="kicker">// SERVER ADMIN ONLY</span>
+      <h1>لوحة الإدارة.</h1>
+      <p class="muted">تم حذف قفل PIN المحلي لأنه كان يعطي وهماً بالصلاحية. الإدارة الآن تعتمد على حساب مدير حقيقي في السيرفر فقط.</p>
+      <div class="notice danger"><strong>تنبيه صريح:</strong> إذا لم تكن مسجلاً بحساب مدير فلن تظهر بيانات الإدارة. هذا مقصود، وليس خطأ في الواجهة.</div>
+      <div class="actions"><a class="btn primary" href="login.html">تسجيل دخول مدير</a><button class="btn secondary" id="localBackupOnly" type="button">تصدير نسخة المتصفح فقط</button></div>
+    </section>
+    <section id="serverAdminMount"></section>
+  </main>
+  <div id="siteFooter"></div>
+  <script defer src="../assets/dist/bawsala-core.js?v=16.0.1"></script><script defer src="../assets/js/admin-server.js?v=16.0.1"></script><script defer src="../assets/dist/bawsala-enhancements.js?v=16.0.1"></script>
+</body>
+</html>

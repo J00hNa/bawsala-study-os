@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; manifest-src 'self'; worker-src 'self'; media-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'">
+  <meta name="theme-color" content="#100022"><meta name="color-scheme" content="light dark"><meta name="format-detection" content="telephone=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="تقويم بوصلة الداخلي لتنظيم الامتحانات والمواعيد والجلسات والتسليمات الدراسية."><meta name="robots" content="noindex, nofollow">
+  <title>التقويم | بوصلة</title>
+  <script src="../assets/js/theme-boot.js?v=16.0.1"></script>
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../assets/img/logo.svg?v=16.0.1" type="image/svg+xml"><link rel="apple-touch-icon" sizes="192x192" href="../assets/img/icon-192.png?v=16.0.1">
+  <link rel="stylesheet" href="../assets/dist/bawsala-pixel.css?v=16.0.1">
+</head>
+<body data-page="calendar">
+<a class="skip-link" href="#main">تجاوز إلى المحتوى</a><div class="pixel-bg" aria-hidden="true"></div><div class="pixel-glow" aria-hidden="true"></div><div id="siteHeader"></div>
+<main id="main" class="container">
+  <section class="page-title">
+    <span class="kicker">// STUDY CALENDAR</span>
+    <h1>تقويم الدراسة.</h1>
+    <p class="muted">نظّم المواعيد والامتحانات والتسليمات، واحفظها على حسابك. يمكن مزامنة أحداث بوصلة فقط مع Google Calendar دون استيراد أحداثك الشخصية الأخرى.</p>
+    <div id="calendarStatus" class="notice" role="status" aria-live="polite">جاهز.</div>
+  </section><nav class="study-link-panel" aria-label="روابط تنفيذ مرتبطة"><a href="workspace.html#mission"><b>MISSION</b><span>حوّل الحدث لمهمة</span></a><a href="workspace.html#homework"><b>HOMEWORK</b><span>راجع الواجبات</span></a><a href="workspace.html#flow"><b>FLOW</b><span>ابدأ التدفق</span></a></nav>
+
+  <section class="split section-sm">
+    <article class="card">
+      <h2>إضافة أو تعديل حدث</h2>
+      <form class="form-grid" id="calendarForm">
+        <input type="hidden" name="eventId">
+        <label class="field"><span>العنوان</span><input name="title" required placeholder="امتحان كيمياء، تسليم BTEC..." autocomplete="off"></label>
+        <div class="field-row">
+          <label class="field"><span>النوع</span><select name="type"><option value="task">مهمة</option><option value="deadline">موعد تسليم</option><option value="exam">امتحان</option><option value="session">جلسة دراسة</option><option value="reminder">تذكير</option></select></label>
+          <label class="field"><span>المسار</span><select name="track"><option value="all">كل المسارات</option><option value="academic">أكاديمي</option><option value="btec">BTEC / مهني</option></select></label>
+        </div>
+        <div class="field-row">
+          <label class="field"><span>التاريخ</span><input name="date" type="date" required autocomplete="off"></label>
+          <label class="field"><span>الوقت</span><input name="time" type="time" autocomplete="off"></label>
+        </div>
+        <div class="field-row">
+          <label class="field"><span>المدة بالدقائق</span><input name="duration" type="number" min="0" max="480" value="60" autocomplete="off"></label>
+          <label class="field"><span>المادة / التخصص</span><input name="subject" placeholder="رياضيات، IT، Business..." autocomplete="off"></label>
+        </div>
+        <div class="field-row">
+          <label class="field"><span>التذكير</span><select name="reminder"><option value="none">بدون</option><option value="same-day">في وقت الحدث</option><option value="day-before">قبل يوم</option><option value="week-before">قبل أسبوع</option></select></label>
+          <label class="field"><span>المنطقة الزمنية</span><input name="timezone" value="Asia/Amman" placeholder="Asia/Amman" autocomplete="off"></label>
+        </div>
+        <label class="field"><span>ملاحظات</span><textarea name="notes" rows="4" placeholder="اكتب المطلوب بالضبط، لا تتركه عاماً."></textarea></label>
+        <button class="btn primary full" type="submit">إضافة الحدث</button>
+      </form>
+    </article>
+    <aside class="card">
+      <span class="badge blue">Google Calendar</span>
+      <h2>تكامل خارجي</h2>
+      <p class="muted" id="googleCalendarNotice" role="status" aria-live="polite">جارٍ فحص حالة الربط…</p>
+      <button class="btn secondary full" id="googleCalendarConnect" type="button">ربط Google Calendar</button>
+      <label class="field" id="googleCalendarDirectionField"><span>اتجاه المزامنة</span><select id="googleCalendarDirection"><option value="two-way">ثنائية الاتجاه</option><option value="push">رفع من بوصلة فقط</option><option value="pull">سحب أحداث بوصلة من Google فقط</option></select></label>
+      <button class="btn primary full" id="googleCalendarSync" type="button">مزامنة الآن</button>
+      <button class="btn danger full" id="googleCalendarDisconnect" type="button">فصل Google Calendar</button>
+      <hr>
+      <button class="btn full" id="calendarReminderDispatch" type="button">تشغيل تذكيرات مستحقة</button>
+      <button class="btn full" id="calendarExport" type="button">تصدير التقويم JSON</button>
+    </aside>
+  </section>
+
+  <section class="section-sm card calendar-board" aria-label="عرض شهري للتقويم">
+    <div class="calendar-toolbar">
+      <div>
+        <span class="kicker">MONTH VIEW</span>
+        <h2 id="calendarMonthLabel">الشهر الحالي</h2>
+      </div>
+      <div class="actions">
+        <button class="btn sm secondary" id="calendarPrev" type="button">السابق</button>
+        <button class="btn sm" id="calendarToday" type="button">اليوم</button>
+        <button class="btn sm secondary" id="calendarNext" type="button">التالي</button>
+      </div>
+    </div>
+    <div class="calendar-weekdays" aria-hidden="true"><span>الأحد</span><span>الإثنين</span><span>الثلاثاء</span><span>الأربعاء</span><span>الخميس</span><span>الجمعة</span><span>السبت</span></div>
+    <div id="calendarMonthGrid" class="calendar-month-grid" aria-live="polite"></div>
+  </section>
+
+  <section class="section-sm">
+    <div class="actions">
+      <label class="field compact-field"><span>فلترة</span><select id="calendarFilter"><option value="all">كل الأحداث</option><option value="deadline">التسليمات</option><option value="exam">الامتحانات</option><option value="session">الجلسات</option><option value="task">المهام</option><option value="reminder">التذكيرات</option></select></label>
+    </div>
+    <div id="calendarEmpty" class="empty">لا توجد أحداث بعد. هذا ليس جيداً إذا عندك امتحانات وتسليمات؛ اكتبها الآن.</div>
+    <div class="grid grid-2" id="calendarList" aria-live="polite"></div>
+  </section>
+</main>
+  <div id="siteFooter"></div>
+<script defer src="../assets/dist/bawsala-core.js?v=16.0.1"></script><script defer src="../assets/js/calendar.js?v=16.0.1"></script><script defer src="../assets/dist/bawsala-enhancements.js?v=16.0.1"></script>
+</body></html>

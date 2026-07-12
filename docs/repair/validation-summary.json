@@ -1,0 +1,14 @@
+{
+  "generated": true,
+  "generatedAt": "2026-07-12T13:12:46.544Z",
+  "commit": null,
+  "runId": null,
+  "status": "components-passed",
+  "tests": {
+    "check_all": "not-completed-environment-timeout",
+    "component_stages": "passed",
+    "source_scripts": 93,
+    "html_pages": 28
+  },
+  "warning": "The aggregate command exceeded the execution host time limit after Chromium passed. All remaining release stages were executed separately and passed; served-browser E2E was blocked by a host-managed Chromium URL policy and is enforced in unrestricted CI."
+}

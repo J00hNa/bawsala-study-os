@@ -1,0 +1,9 @@
+import fs from 'node:fs';import path from 'node:path';
+const root=process.cwd();let failed=false;const fail=m=>{failed=true;console.error('FRONTEND FAIL:',m);};const read=f=>fs.readFileSync(path.join(root,f),'utf8');
+const css=read('assets/css/app.css');const manifest=JSON.parse(read('assets/dist/build-manifest.json'));const runtime=read('assets/js/frontend-v20.js');const innovation=read('assets/js/frontend-v21.js');
+if(manifest.version!=='16.0.1')fail('manifest version mismatch');if(JSON.stringify(manifest.cssSources)!==JSON.stringify(['assets/css/app.css']))fail('CSS is not consolidated');
+for(const marker of ['--font-ui','--font-mono','.mobile-dock','.display-preferences','workspace-focus-mode','env(safe-area-inset-bottom)','@media (prefers-reduced-motion:reduce)','@media (max-width:720px)','.calendar-weekdays','.workspace-route-strip'])if(!css.includes(marker))fail(`app.css missing ${marker}`);
+for(const marker of ['mountMobileDock','mountPreferences','setFocusMode','ensureMainFocus'])if(!runtime.includes(marker))fail(`frontend runtime missing ${marker}`);
+for(const marker of ['mountQuickCapture','mountStudyRail','mountPageCompass','mountReadingProgress'])if(!innovation.includes(marker))fail(`enhancement runtime missing ${marker}`);
+const pages=['index.html',...fs.readdirSync(path.join(root,'pages')).filter(n=>n.endsWith('.html')).map(n=>`pages/${n}`)];for(const page of pages){const source=read(page);if(!/<html[^>]*dir="rtl"/.test(source))fail(`${page} missing RTL root`);if((source.match(/bawsala-enhancements\.js/g)||[]).length!==1)fail(`${page} enhancement bundle count is not one`);if(!/<main\b[^>]*id="main"/.test(source))fail(`${page} missing main landmark`);}
+if(failed)process.exit(1);console.log(`OK: frontend experience passed for ${pages.length} responsive RTL pages with consolidated styles.`);

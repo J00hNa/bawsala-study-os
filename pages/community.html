@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; manifest-src 'self'; worker-src 'self'; media-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'">
+  <meta name="theme-color" content="#100022"><meta name="color-scheme" content="light dark"><meta name="format-detection" content="telephone=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="مساحة محلية على جهاز الطالب لتنظيم مجموعات الدراسة والأهداف والمشكلات؛ ليست شبكة اجتماعية ولا تنشر البيانات للآخرين."><meta name="robots" content="noindex, nofollow">
+  <title>مساحة الطالب المحلية | بوصلة</title>
+  <script src="../assets/js/theme-boot.js?v=16.0.1"></script>
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../assets/img/logo.svg?v=16.0.1" type="image/svg+xml"><link rel="apple-touch-icon" sizes="192x192" href="../assets/img/icon-192.png?v=16.0.1">
+  <link rel="stylesheet" href="../assets/dist/bawsala-pixel.css?v=16.0.1">
+</head>
+<body data-page="community">
+  <a class="skip-link" href="#main">تجاوز إلى المحتوى</a>
+  <div class="pixel-bg" aria-hidden="true"></div><div class="pixel-glow" aria-hidden="true"></div>
+  <div id="siteHeader"></div>
+  <main id="main" class="container">
+    <section class="page-title"><span class="kicker">// LOCAL STUDY SPACE</span><h1>مساحة الطالب المحلية.</h1><p class="muted">هذه الصفحة ليست شبكة اجتماعية ولا تدّعي وجود واحدة. خطط المجموعات والملاحظات تحفظ على جهازك أو حسابك فقط، ولا تنشئ أعضاء حقيقيين.</p><p class="private-label">لا توجد منشورات عامة أو عضويات شبكية</p></section>
+    <section class="section-sm grid grid-2">
+      <article class="card"><span class="badge blue">خطة مجموعة محلية</span><h2>نظّم مجموعة تعرف أعضاءها فعلياً</h2><p class="fine">بوصلة تحفظ الخطة فقط. الدعوات والتواصل تتم خارج الموقع.</p><form class="form-grid" id="groupForm"><label class="field"><span>اسم المجموعة</span><input name="groupName" required autocomplete="off"></label><div class="field-row"><label class="field"><span>المادة</span><input name="groupSubject" required autocomplete="off"></label><label class="field"><span>المسار</span><select name="groupTrack"><option>عام</option><option>أكاديمي</option><option>BTEC</option><option>مختلط</option><option>توجيهي</option></select></label></div><div class="field-row"><label class="field"><span>السعة المخططة</span><input name="groupCapacity" type="number" min="2" max="50" value="4" autocomplete="off"></label><label class="field"><span>هدف الجلسة</span><input name="groupGoal" placeholder="حل أسئلة وحدة 3" autocomplete="off"></label></div><button class="btn primary" type="submit">حفظ الخطة محلياً</button></form></article>
+      <article class="card"><span class="badge red">ملاحظة خاصة</span><h2>اكتب المشكلة قبل إرسالها للدعم</h2><form class="form-grid" id="problemForm"><div class="field-row"><label class="field"><span>الخصوصية</span><select name="privacy"><option value="anonymous">بدون اسم</option><option value="info">بمعلوماتي</option><option value="private">خاصة جداً</option></select></label><label class="field"><span>الفئة</span><input name="problemCategory" placeholder="حساب / دراسة / تنظيم / منصة" autocomplete="off"></label></div><label class="field"><span>العنوان</span><input name="problemTitle" required autocomplete="off"></label><div class="field-row"><label class="field"><span>الاسم اختياري</span><input name="studentName" autocomplete="off"></label><label class="field"><span>وسيلة تواصل اختيارية</span><input name="studentContact" autocomplete="off"></label></div><label class="field"><span>التفاصيل</span><textarea name="problemDetails" rows="5" required></textarea></label><button class="btn primary" type="submit">حفظ الملاحظة الخاصة</button></form></article>
+    </section>
+    <section class="section-sm grid grid-2"><div><h2>خطط المجموعات المحلية</h2><div class="grid" id="groupsList"></div></div><div><h2>ملاحظات هذا البروفايل <span id="problemCount">0</span></h2><div class="grid" id="problemsList"></div></div></section>
+  </main>
+  <div id="siteFooter"></div>
+  <script defer src="../assets/dist/bawsala-core.js?v=16.0.1"></script><script defer src="../assets/js/community.js?v=16.0.1"></script><script defer src="../assets/dist/bawsala-enhancements.js?v=16.0.1"></script>
+</body>
+</html>

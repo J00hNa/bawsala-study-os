@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; manifest-src 'self'; worker-src 'self'; media-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'">
+  <meta name="theme-color" content="#100022"><meta name="color-scheme" content="light dark"><meta name="format-detection" content="telephone=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="خرائط ذهنية مجانية لتنظيم دروس التوجيهي وBTEC."><meta name="robots" content="noindex, nofollow">
+  <title>خرائط ذهنية | بوصلة</title>
+  <script src="../assets/js/theme-boot.js?v=16.0.1"></script>
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../assets/img/logo.svg?v=16.0.1" type="image/svg+xml"><link rel="apple-touch-icon" sizes="192x192" href="../assets/img/icon-192.png?v=16.0.1">
+  <link rel="stylesheet" href="../assets/dist/bawsala-pixel.css?v=16.0.1">
+</head>
+<body data-page="mindmaps">
+  <a class="skip-link" href="#main">تجاوز إلى المحتوى</a>
+  <div class="pixel-bg" aria-hidden="true"></div><div class="pixel-glow" aria-hidden="true"></div>
+  <div id="siteHeader"></div>
+  <main id="main" class="container">
+    <section class="page-title"><span class="kicker">// MIND MAPS</span><h1>خرائط ذهنية للدراسة.</h1><p class="muted">حوّل الدرس من كلام طويل إلى مركز وفروع: تعريفات، قوانين، أمثلة، أخطاء، وأسئلة متوقعة.</p></section><nav class="study-link-panel" aria-label="روابط تنفيذ مرتبطة"><a href="workspace.html#mindmap"><b>MAP</b><span>الخرائط داخل الغرفة</span></a><a href="workspace.html#mission"><b>MISSION</b><span>حوّل الخريطة لمهمة</span></a><a href="workspace.html#focus"><b>FOCUS</b><span>نفّذ بعد التخطيط</span></a></nav>
+    <section class="section-sm split wide-split">
+      <aside class="card">
+        <h2>إنشاء خريطة</h2>
+        <form class="compact-form" id="mapForm">
+          <label class="field"><span>قالب</span><select name="template" id="mapTemplate"></select></label>
+          <label class="field"><span>عنوان الخريطة</span><input name="title" required placeholder="مثلاً: قوانين الحركة" autocomplete="off"></label>
+          <label class="field"><span>المادة</span><input name="subject" placeholder="فيزياء" autocomplete="off"></label>
+          <label class="field"><span>الفكرة المركزية</span><input name="center" required placeholder="عنوان الدرس أو المعيار" autocomplete="off"></label>
+          <button class="btn primary full" type="submit">إنشاء الخريطة</button>
+        </form>
+        <hr>
+        <h2>إضافة فرع</h2>
+        <form class="compact-form" id="nodeForm">
+          <label class="field"><span>الخريطة</span><select name="mapId" id="nodeMapSelect"></select></label>
+          <label class="field"><span>يتبع إلى</span><select name="parentId" id="parentSelect"></select></label>
+          <label class="field"><span>نص الفرع</span><input name="text" required placeholder="مثلاً: القانون / مثال / خطأ" autocomplete="off"></label>
+          <label class="field"><span>لون</span><select name="color"><option value="brand">أصفر</option><option value="blue">أزرق</option><option value="green">أخضر</option><option value="purple">بنفسجي</option><option value="gray">رمادي</option></select></label>
+          <button class="btn secondary full" type="submit">إضافة الفرع</button>
+        </form>
+        <hr>
+        <div class="actions"><button class="btn" id="copyMap" type="button">نسخ الخريطة كنقاط</button><button class="btn danger" id="deleteMap" type="button">حذف الخريطة</button></div>
+      </aside>
+      <section class="grid">
+        <article class="card"><div class="inline"><h2 class="flush-title">الخريطة النشطة</h2><select id="activeMap" class="input compact-select" aria-label="اختيار الخريطة النشطة"></select></div><div id="mindmapCanvas" class="mindmap-canvas"></div></article>
+        <article class="card"><h2>ملخص الفروع</h2><div id="mapOutline" class="grid grid-2"></div></article>
+      </section>
+    </section>
+  </main>
+  <div id="siteFooter"></div>
+  <script defer src="../assets/dist/bawsala-core.js?v=16.0.1"></script><script defer src="../assets/js/mindmaps.js?v=16.0.1"></script><script defer src="../assets/dist/bawsala-enhancements.js?v=16.0.1"></script>
+</body>
+</html>

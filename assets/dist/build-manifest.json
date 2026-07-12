@@ -1,0 +1,53 @@
+{
+  "version": "16.0.1",
+  "generatedAt": "2026-07-12T13:10:52.662Z",
+  "cssSources": [
+    "assets/css/app.css"
+  ],
+  "coreSources": [
+    "assets/js/data.js",
+    "assets/js/security.js",
+    "assets/js/backend-client.js",
+    "assets/js/storage.js",
+    "assets/js/study-loop.js",
+    "assets/js/focus-timer.js",
+    "assets/js/study-service.js",
+    "assets/js/api.js",
+    "assets/js/ui.js",
+    "assets/js/auth-status.js",
+    "assets/js/monitoring.js",
+    "assets/js/search.js",
+    "assets/js/pwa.js",
+    "assets/js/onboarding-gate.js"
+  ],
+  "enhancementSources": [
+    "assets/js/command-center.js",
+    "assets/js/frontend-v20.js",
+    "assets/js/i18n.js",
+    "assets/js/frontend-v21.js",
+    "assets/js/frontend-runtime-v22.js"
+  ],
+  "outputs": [
+    {
+      "file": "assets/dist/bawsala-pixel.css",
+      "bytes": 53836,
+      "gzipBytes": 11480,
+      "brotliBytes": 10865,
+      "sha256": "f8234f450725f2318a1c312aa6af6e10cfdc9674ccd9d17dc13b38befa544b40"
+    },
+    {
+      "file": "assets/dist/bawsala-core.js",
+      "bytes": 181682,
+      "gzipBytes": 49902,
+      "brotliBytes": 46103,
+      "sha256": "b93feefee2749471dad77a8fd76d8a728e8f6dc59153f5820c1278ab6cdcbb4b"
+    },
+    {
+      "file": "assets/dist/bawsala-enhancements.js",
+      "bytes": 102661,
+      "gzipBytes": 30658,
+      "brotliBytes": 27993,
+      "sha256": "20197ae1813a3cdb55ddbeecbb9feec33be5124a83db974bb3e39cbd29b84897"
+    }
+  ]
+}

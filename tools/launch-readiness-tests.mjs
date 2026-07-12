@@ -1,0 +1,11 @@
+import fs from 'node:fs';import path from 'node:path';
+const root=process.cwd();let failed=false;const fail=m=>{failed=true;console.error('LAUNCH READINESS FAIL:',m);};const read=f=>fs.readFileSync(path.join(root,f),'utf8');
+const pages=['index.html',...fs.readdirSync(path.join(root,'pages')).filter(n=>n.endsWith('.html')).map(n=>`pages/${n}`)];
+for(const page of pages){const source=read(page);if(source.includes("'unsafe-inline'"))fail(`${page} permits unsafe-inline`);if(!source.includes('bawsala-pixel.css?v=16.0.1'))fail(`${page} CSS version mismatch`);if(!source.includes('bawsala-enhancements.js?v=16.0.1'))fail(`${page} enhancement version mismatch`);}
+const workspace=read('pages/workspace.html');for(const id of ['flow','mission','focus','errors','review','library'])if(!workspace.includes(`id="${id}"`))fail(`workspace missing ${id}`);
+if((workspace.match(/class="route-anchor-tile/g)||[]).length>6)fail('workspace primary route count exceeds six');
+const workspaceJs=read('assets/js/workspace.js');for(const marker of ['loopCompletion','${loop.done}/${loop.total}','library'])if(!workspaceJs.includes(marker))fail(`workspace loop missing ${marker}`);if(workspaceJs.includes('readinessScore'))fail('fabricated readinessScore remains');
+const advisor=read('assets/js/advisor.js');if(/score\s*:|\/100/.test(advisor))fail('advisor still produces a pseudo-precise score');for(const marker of ['decisionLevel','ليس ذكاءً اصطناعياً','قواعد واضحة'])if(!advisor.includes(marker))fail(`advisor disclosure missing ${marker}`);
+const signup=read('pages/signup.html');if(/name="phone"[^>]*required/.test(signup)||/name="dob"/.test(signup))fail('signup still requires excessive personal data');if(!/name="ageConfirmed"[^>]*required/.test(signup))fail('13+ confirmation missing');
+const report=read('PRODUCTION_READINESS.md');if(/Score:\s*\d+\/100|97\/100/.test(report))fail('numeric readiness score remains');for(const marker of ['conditional, not production-approved','Conditional GO checklist','Remaining risks'])if(!report.toLowerCase().includes(marker.toLowerCase()))fail(`readiness report missing ${marker}`);
+if(failed)process.exit(1);console.log(`OK: focused launch boundaries checked across ${pages.length} pages; deployment remains conditional.`);

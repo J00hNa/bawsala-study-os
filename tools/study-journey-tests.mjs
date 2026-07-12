@@ -1,0 +1,45 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+
+const read=file=>fs.readFileSync(file,'utf8');
+const server=read('server.js');
+const contract=read('lib/api-contract.js');
+const service=read('assets/js/study-service.js');
+const backend=read('assets/js/backend-client.js');
+const rail=read('assets/js/frontend-v21.js');
+const dashboard=read('assets/js/dashboard.js');
+const workspace=read('assets/js/workspace.js');
+const resources=read('assets/js/resources.js');
+const notebook=read('assets/js/notebook.js');
+const calendar=read('assets/js/calendar.js');
+const flashcards=read('assets/js/flashcards.js');
+const dashboardHtml=read('pages/dashboard.html');
+const css=read('assets/css/app.css');
+
+assert.match(server,/\/api\/study\/overview/);
+assert.match(server,/\/api\/study\/transactions/);
+assert.match(contract,/study\.overview/);
+assert.match(contract,/study\.transactions/);
+assert.match(backend,/function studyOverview/);
+assert.match(backend,/function studyTransaction/);
+assert.match(service,/function beginContext/);
+assert.match(service,/continuation\.set/);
+assert.match(service,/baseRevision/);
+assert.match(rail,/data-clear-study-context/);
+assert.match(rail,/study-context-rail__origin/);
+assert.match(dashboardHtml,/id="dashboardJourney"/);
+assert.match(dashboard,/function renderJourney/);
+assert.match(workspace,/function beginStudyContext/);
+assert.match(workspace,/saveStudySession/);
+assert.match(workspace,/saveStudyReview/);
+assert.match(resources,/kind:'resource'/);
+assert.match(notebook,/kind:'note'/);
+assert.match(calendar,/data-start-study/);
+assert.match(calendar,/kind:'calendar'/);
+assert.match(flashcards,/id="startDueReview"|startDueReview/);
+assert.match(flashcards,/kind:'flashcards'/);
+assert.match(css,/\.journey-control/);
+assert.match(css,/\.workspace-continuation/);
+assert.doesNotMatch(resources,/store\.set\('dashboard:mission'/,'resources must use shared study context instead of a disconnected mission write');
+
+console.log('OK: cross-page study journey, backend client, contextual actions, and visible continuity surfaces verified.');

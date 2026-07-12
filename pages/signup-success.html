@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; manifest-src 'self'; worker-src 'self'; media-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'">
+  <meta name="theme-color" content="#100022"><meta name="color-scheme" content="light dark"><meta name="format-detection" content="telephone=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="تأكيد إنشاء حساب بوصلة وخطوة التحقق من البريد الإلكتروني قبل استخدام الحساب كحساب موثوق."><meta name="robots" content="noindex, nofollow">
+  <title>تأكيد الحساب | بوصلة</title>
+  <script src="../assets/js/theme-boot.js?v=16.0.1"></script>
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../assets/img/logo.svg?v=16.0.1" type="image/svg+xml"><link rel="apple-touch-icon" sizes="192x192" href="../assets/img/icon-192.png?v=16.0.1">
+  <link rel="stylesheet" href="../assets/dist/bawsala-pixel.css?v=16.0.1">
+</head>
+<body data-page="signup-success">
+<a class="skip-link" href="#main">تجاوز إلى المحتوى</a><div class="pixel-bg" aria-hidden="true"></div><div class="pixel-glow" aria-hidden="true"></div><div id="siteHeader"></div>
+<main id="main" class="container auth-page">
+  <section class="auth-shell section-sm">
+    <article class="card auth-card"><span class="kicker">// EMAIL VERIFICATION</span><h1>الحساب أُنشئ. لا تتجاوز تأكيد البريد.</h1><div id="verifyMessage" class="notice">نراجع حالة الحساب...</div>
+      <div class="form-grid">
+        <p class="muted">أرسلنا رابط تأكيد إلى بريدك. الحساب غير موثوق بالكامل إلى أن تضغط رابط التأكيد. هذا ليس تعقيداً شكلياً؛ هذه طبقة تمنع الحسابات الوهمية وتقلل إساءة الاستخدام.</p>
+        <div id="devVerifyBox" class="notice warning hide"><strong>Development only:</strong> <span>مزود البريد غير مضبوط، لذلك يظهر رابط التحقق هنا في بيئة التطوير فقط.</span><p><a id="devVerifyLink" href="login.html">فتح رابط التحقق</a></p></div>
+        <button class="btn secondary full" id="resendVerify" type="button">إعادة إرسال رابط التأكيد</button>
+        <a class="btn primary full" href="dashboard.html" id="continueDashboard">المتابعة إلى لوحة الطالب</a>
+        <a class="btn full" href="login.html">العودة إلى تسجيل الدخول</a>
+      </div>
+    </article>
+    <aside class="card"><span class="badge blue">Account trust</span><h2>ماذا يحدث الآن؟</h2><ul class="list"><li>تأكيد البريد يثبت أن الحساب ليس بريداً مزيفاً.</li><li>Google Sign-In يعتبر البريد موثقاً فقط إذا أكد Google ذلك.</li><li>لو لم يصل البريد، اضغط إعادة الإرسال بعد دقائق.</li><li>في الإنتاج لا يجوز الاعتماد على رابط development؛ يجب إعداد مزود بريد حقيقي.</li></ul></aside>
+  </section>
+</main>
+  <div id="siteFooter"></div>
+<script defer src="../assets/dist/bawsala-core.js?v=16.0.1"></script><script defer src="../assets/js/signup-success.js?v=16.0.1"></script><script defer src="../assets/dist/bawsala-enhancements.js?v=16.0.1"></script>
+</body></html>
