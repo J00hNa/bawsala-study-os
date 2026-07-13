@@ -1,0 +1,18 @@
+{
+  "name": "Bawsala Study OS",
+  "short_name": "Bawsala",
+  "description": "A dark pixel-game study system for focused work, active recall, and planning.",
+  "start_url": "./index.html#dashboard",
+  "display": "standalone",
+  "background_color": "#070812",
+  "theme_color": "#080912",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "assets/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
