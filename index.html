@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#080912" />
+  <meta name="description" content="Bawsala Study OS — a dark pixel-game study system for students." />
+  <title>Bawsala Study OS</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="assets/icon-192.png" sizes="192x192" type="image/png" />
+  <link rel="apple-touch-icon" href="assets/icon-192.png" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="application-name" content="Bawsala Study OS" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#mainContent">Skip to main content</a>
+  <div class="boot-screen" id="bootScreen" aria-hidden="true">
+    <div class="boot-stars"></div>
+    <div class="boot-logo">BAWSALA</div>
+    <div class="boot-subtitle">STUDY OS // LOADING PLAYER DATA</div>
+    <div class="boot-bar"><span></span></div>
+  </div>
+
+  <button class="sidebar-backdrop hidden" id="sidebarBackdrop" type="button" aria-label="Close navigation"></button>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar" aria-label="Primary navigation">
+      <div class="brand-block">
+        <div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+        <div><div class="brand-name">BAWSALA</div><div class="brand-tag">STUDY OS</div></div>
+      </div>
+
+      <div class="nav-section-label">CAMPAIGN</div>
+      <nav class="nav-list">
+        <button class="nav-item active" data-route="dashboard"><span class="nav-icon">▦</span><span>Dashboard</span><kbd>1</kbd></button>
+        <button class="nav-item" data-route="quests"><span class="nav-icon">◆</span><span>Quest Log</span><kbd>2</kbd></button>
+        <button class="nav-item" data-route="focus"><span class="nav-icon">◉</span><span>Focus Room</span><kbd>3</kbd></button>
+        <button class="nav-item" data-route="flashcards"><span class="nav-icon">▣</span><span>Flashcards</span><kbd>4</kbd></button>
+        <button class="nav-item" data-route="arena"><span class="nav-icon">⚔</span><span>Study Arena</span><kbd>5</kbd></button>
+      </nav>
+
+      <div class="nav-section-label">SYSTEM</div>
+      <nav class="nav-list">
+        <button class="nav-item" data-route="planner"><span class="nav-icon">▥</span><span>Planner</span><kbd>6</kbd></button>
+        <button class="nav-item" data-route="subjects"><span class="nav-icon">▤</span><span>Subjects</span><kbd>7</kbd></button>
+        <button class="nav-item" data-route="notes"><span class="nav-icon">✦</span><span>Notes</span><kbd>8</kbd></button>
+        <button class="nav-item" data-route="library"><span class="nav-icon">▧</span><span>Library</span><kbd>9</kbd></button>
+        <button class="nav-item" data-route="stats"><span class="nav-icon">▨</span><span>Stats</span></button>
+        <button class="nav-item" data-route="settings"><span class="nav-icon">⚙</span><span>Settings</span></button>
+      </nav>
+
+      <div class="sidebar-spacer"></div>
+
+      <div class="player-card pixel-panel">
+        <div class="avatar pixel-avatar" id="sidebarAvatar">J</div>
+        <div class="player-info">
+          <div class="player-row"><strong id="sidebarPlayerName">PLAYER</strong><span>LV.<span id="sidebarLevel">1</span></span></div>
+          <div class="mini-progress"><span id="sidebarXpBar"></span></div>
+          <small><span id="sidebarXpText">0 / 1000 XP</span></small>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-area" id="mainContent" tabindex="-1">
+      <header class="topbar">
+        <button class="icon-button mobile-only" id="menuButton" aria-label="Open navigation" aria-controls="sidebar" aria-expanded="false">☰</button>
+        <div class="page-heading"><span class="eyebrow" id="pageEyebrow">COMMAND CENTER</span><h1 id="pageTitle">Dashboard</h1></div>
+        <div class="topbar-actions">
+          <div class="currency-chip" title="Credits are earned through real study activity"><span>◇</span><strong id="creditsCount">0</strong></div>
+          <button class="status-chip" id="quickFocusButton"><span class="pulse-dot"></span>START FOCUS</button>
+          <button class="cloud-status-chip" id="cloudStatusButton" type="button" aria-label="Cloud sync status" title="Cloud sync status"><span class="cloud-status-dot"></span><strong id="cloudStatusText">LOCAL</strong></button>
+          <button class="icon-button" id="searchButton" aria-label="Search">⌕</button>
+          <button class="icon-button notification-button" id="notificationButton" aria-label="Notifications">!</button>
+        </div>
+      </header>
+
+      <div class="content-area">
+        <section class="page active" data-page="dashboard">
+          <div class="hero-grid">
+            <article class="mission-card pixel-panel gradient-border">
+              <div class="mission-copy">
+                <span class="section-kicker">TODAY'S MAIN QUEST</span>
+                <h2 id="dailyQuestTitle">Choose your next meaningful task</h2>
+                <p id="dailyQuestDescription">A clear target beats random studying. Start with the highest-impact task.</p>
+                <div class="mission-meta" id="dailyQuestMeta"><span>+0 XP</span><span>0 MIN</span><span>PRIORITY: NONE</span></div>
+                <div class="mission-actions">
+                  <button class="primary-button" id="startDailyQuest">START MISSION</button>
+                  <button class="secondary-button" id="quickReviewButton">QUICK REVIEW</button>
+                </div>
+              </div>
+              <div class="mission-art" aria-hidden="true">
+                <div class="pixel-moon"></div>
+                <div class="pixel-city"><i></i><i></i><i></i><i></i><i></i></div>
+                <div class="pixel-ship"><b></b><span></span></div>
+              </div>
+            </article>
+
+            <article class="level-card pixel-panel">
+              <div class="level-top"><span class="section-kicker">PLAYER STATUS</span><span class="rank-badge" id="rankBadge">NOVICE I</span></div>
+              <div class="level-number"><span>LV</span><strong id="dashboardLevel">1</strong></div>
+              <div class="progress-label"><span>Experience</span><span id="dashboardXpText">0 / 1000 XP</span></div>
+              <div class="large-progress"><span id="dashboardXpBar"></span></div>
+              <div class="level-reward"><span>Next milestone</span><strong id="nextMilestone">Complete 1 focus session</strong></div>
+              <div class="companion-line"><span class="mini-bot" aria-hidden="true"><i></i></span><p id="companionMessage">Pick one task and begin. Momentum comes after action.</p></div>
+            </article>
+          </div>
+
+          <div class="stat-grid">
+            <article class="stat-card pixel-panel"><div class="stat-icon">◫</div><div><span>Focus Today</span><strong id="todayFocusStat">0m</strong><small id="focusTargetText">Goal: 120m</small></div></article>
+            <article class="stat-card pixel-panel"><div class="stat-icon">◆</div><div><span>Quests Cleared</span><strong id="questsClearedStat">0</strong><small id="questTotalText">0 active</small></div></article>
+            <article class="stat-card pixel-panel"><div class="stat-icon">▣</div><div><span>Cards Due</span><strong id="cardsDueStat">0</strong><small id="cardRetentionText">0% retention</small></div></article>
+            <article class="stat-card pixel-panel"><div class="stat-icon">♨</div><div><span>Current Streak</span><strong><span id="streakStat">0</span> days</strong><small>Consistency over intensity</small></div></article>
+          </div>
+
+          <div class="dashboard-main-grid">
+            <article class="pixel-panel panel-padding route-panel">
+              <div class="panel-header"><div><span class="section-kicker">DAILY ROUTE</span><h3>Three moves that matter</h3></div><span class="route-score" id="routeScore">0/3</span></div>
+              <div class="daily-route" id="dailyRoute"></div>
+            </article>
+
+            <article class="pixel-panel panel-padding">
+              <div class="panel-header"><div><span class="section-kicker">UP NEXT</span><h3>Schedule</h3></div><button class="text-button" data-route="planner">OPEN PLANNER →</button></div>
+              <div class="timeline" id="dashboardSchedule"></div>
+            </article>
+
+            <article class="pixel-panel panel-padding momentum-panel">
+              <div class="panel-header"><div><span class="section-kicker">LAST 7 DAYS</span><h3>Momentum Map</h3></div><span class="streak-flame">♨</span></div>
+              <div class="week-strip" id="weekStrip"></div>
+              <div class="streak-message"><strong id="streakMessageTitle">Start your chain</strong><span id="streakMessageText">Any focused action counts.</span></div>
+            </article>
+
+            <article class="pixel-panel panel-padding challenge-panel">
+              <div class="panel-header"><div><span class="section-kicker">DAILY CHALLENGE</span><h3 id="challengeTitle">Recall Rush</h3></div><span class="challenge-reward" id="challengeReward">+100 XP</span></div>
+              <p id="challengeDescription">Review five due cards before the day ends.</p>
+              <div class="challenge-progress"><span id="challengeProgressBar"></span></div>
+              <div class="progress-label"><span id="challengeProgressText">0 / 5</span><span id="challengeStatus">ACTIVE</span></div>
+              <button class="secondary-button full-width" id="challengeAction">ENTER CHALLENGE</button>
+            </article>
+          </div>
+        </section>
+
+        <section class="page" data-page="quests">
+          <div class="page-toolbar pixel-panel">
+            <div class="filter-tabs" id="questFilters"><button class="active" data-filter="all">All</button><button data-filter="active">Active</button><button data-filter="today">Today</button><button data-filter="high">High Priority</button><button data-filter="completed">Cleared</button></div>
+            <button class="primary-button" id="addQuestButton">+ NEW QUEST</button>
+          </div>
+          <div class="quest-summary-strip" id="questSummaryStrip"></div>
+          <div class="quest-board" id="questBoard"></div>
+          <div class="empty-state pixel-panel hidden" id="questEmptyState"><div class="empty-icon">◇</div><h3>No quests here</h3><p>Create a clear, finishable task instead of a vague goal.</p><button class="primary-button" id="emptyAddQuest">CREATE QUEST</button></div>
+        </section>
+
+        <section class="page" data-page="focus">
+          <div class="focus-layout">
+            <article class="focus-core pixel-panel gradient-border">
+              <div class="focus-topline"><div><span class="section-kicker">FOCUS PROTOCOL</span><h2 id="focusModeLabel">Deep Focus</h2></div><span class="focus-bonus" id="focusBonus">+2 XP / MIN</span></div>
+              <div class="timer-ring" id="timerRing"><div class="timer-display" id="timerDisplay" role="timer" aria-live="off">25:00</div><div class="timer-state" id="timerState">READY</div></div>
+              <div class="timer-controls"><button class="secondary-button" id="resetTimerButton">RESET</button><button class="primary-button large" id="startTimerButton">START</button><button class="secondary-button" id="finishTimerButton">FINISH</button></div>
+              <div class="focus-presets" id="focusPresets"><button data-minutes="15">15</button><button data-minutes="25" class="active">25</button><button data-minutes="45">45</button><button data-minutes="60">60</button><button data-minutes="90">90</button></div>
+              <div class="focus-mode-tabs" id="focusModeTabs"><button data-mode="sprint">SPRINT</button><button class="active" data-mode="deep">DEEP</button><button data-mode="review">REVIEW</button></div>
+            </article>
+
+            <aside class="focus-side">
+              <article class="pixel-panel panel-padding">
+                <div class="panel-header"><div><span class="section-kicker">SESSION TARGET</span><h3>Mission Setup</h3></div></div>
+                <label class="field-label">Quest<select class="pixel-input" id="focusQuestSelect"></select></label>
+                <label class="field-label">Intention<textarea class="pixel-input" id="sessionNote" rows="3" placeholder="What will be different when this session ends?"></textarea></label>
+                <label class="field-label">End-of-session proof<input class="pixel-input" id="sessionProof" placeholder="Example: 10 solved questions" /></label>
+              </article>
+              <article class="pixel-panel panel-padding distraction-card">
+                <div class="panel-header"><div><span class="section-kicker">DISTRACTION CAPTURE</span><h3>Park It, Do Not Chase It</h3></div><span class="counter-chip" id="distractionCount">0</span></div>
+                <div class="inline-form"><input class="pixel-input" id="distractionInput" aria-label="Distraction to park" placeholder="Write the distraction..." maxlength="300" /><button class="secondary-button" id="addDistractionButton">PARK</button></div>
+                <div class="distraction-list" id="distractionList"></div>
+              </article>
+              <article class="pixel-panel panel-padding"><div class="panel-header"><div><span class="section-kicker">TODAY</span><h3>Focus Summary</h3></div></div><div class="summary-list"><div><span>Sessions</span><strong id="focusSessionsToday">0</strong></div><div><span>Minutes</span><strong id="focusMinutesToday">0</strong></div><div><span>XP earned</span><strong id="focusXpToday">0</strong></div></div></article>
+            </aside>
+          </div>
+          <article class="pixel-panel panel-padding recent-sessions-panel"><div class="panel-header"><div><span class="section-kicker">SESSION LOG</span><h3>Recent Focus Runs</h3></div></div><div class="session-log" id="recentFocusLog"></div></article>
+        </section>
+
+        <section class="page" data-page="flashcards">
+          <div class="page-toolbar pixel-panel"><div><span class="section-kicker">SPACED REPETITION</span><h2>Flashcard Lab</h2></div><div class="toolbar-group"><select class="pixel-input compact-input" id="cardSubjectFilter" aria-label="Filter flashcards by subject"></select><button class="secondary-button" id="browseCardsButton">BROWSE</button><button class="primary-button" id="addCardButton">+ NEW CARD</button></div></div>
+          <div class="flashcard-stats" id="flashcardStats"></div>
+          <div class="review-layout">
+            <article class="review-stage pixel-panel gradient-border" id="reviewStage">
+              <div class="review-placeholder" id="reviewPlaceholder"><div class="empty-icon">▣</div><h3>Your review queue is ready</h3><p>Rate honestly. Easy points are useless if the memory is weak.</p><button class="primary-button" id="startReviewButton">START REVIEW</button></div>
+              <div class="review-card-wrap hidden" id="reviewCardWrap">
+                <div class="review-top"><span id="reviewSubject">SUBJECT</span><span id="reviewCounter">1 / 1</span></div>
+                <button class="flashcard" id="flashcard" aria-label="Flip card"><span class="card-face card-front"><small>PROMPT</small><strong id="cardFrontText"></strong><em>Click to reveal</em></span><span class="card-face card-back"><small>ANSWER</small><strong id="cardBackText"></strong><em>Rate your recall below</em></span></button>
+                <div class="rating-controls hidden" id="ratingControls"><button data-rating="again"><strong>AGAIN</strong><span>&lt; 1 day</span></button><button data-rating="hard"><strong>HARD</strong><span>2 days</span></button><button data-rating="good"><strong>GOOD</strong><span>next interval</span></button><button data-rating="easy"><strong>EASY</strong><span>long interval</span></button></div>
+              </div>
+              <div class="review-complete hidden" id="reviewComplete"><div class="victory-badge">✓</div><h3>Review queue cleared</h3><p id="reviewCompleteText">You reinforced your memory.</p><button class="secondary-button" id="reviewAgainButton">REVIEW ALL CARDS</button></div>
+            </article>
+            <aside class="pixel-panel panel-padding review-guide"><span class="section-kicker">REVIEW RULES</span><h3>Use retrieval, not recognition</h3><ol><li>Read the prompt.</li><li>Answer out loud or on paper.</li><li>Reveal only after committing.</li><li>Rate the memory, not your mood.</li></ol><div class="memory-meter"><span>Estimated retention</span><strong id="memoryRetention">0%</strong><div class="large-progress"><span id="memoryRetentionBar"></span></div></div></aside>
+          </div>
+          <div class="card-browser pixel-panel hidden" id="cardBrowser"><div class="panel-header"><div><span class="section-kicker">CARD VAULT</span><h3>All Cards</h3></div><button class="icon-button" id="closeCardBrowser" aria-label="Close card browser">×</button></div><div class="card-list" id="cardList"></div></div>
+        </section>
+
+        <section class="page" data-page="arena">
+          <div class="arena-layout">
+            <article class="arena-stage pixel-panel gradient-border">
+              <div class="arena-header"><div><span class="section-kicker">ACTIVE RECALL BATTLE</span><h2>Knowledge Guardian</h2></div><div class="combo-chip">COMBO <strong id="arenaCombo">0</strong>x</div></div>
+              <div class="boss-zone"><div class="pixel-boss" id="pixelBoss"><span></span><i></i><b></b></div><div class="boss-status"><div class="progress-label"><span>GUARDIAN HP</span><span id="bossHpText">100 / 100</span></div><div class="boss-hp"><span id="bossHpBar"></span></div></div></div>
+              <div class="arena-idle" id="arenaIdle"><h3>Five questions. No passive reading.</h3><p>Choose a subject, fight through the set, and earn XP based on accuracy.</p><label class="field-label compact-label">Subject<select class="pixel-input" id="arenaSubjectSelect" aria-label="Arena subject"></select></label><button class="primary-button large" id="startArenaButton">START BATTLE</button></div>
+              <div class="arena-question hidden" id="arenaQuestion"><div class="question-meta"><span id="arenaQuestionSubject">SUBJECT</span><span id="arenaProgress">1 / 5</span></div><h3 id="arenaPrompt"></h3><input class="pixel-input answer-input" id="arenaAnswerInput" aria-label="Answer" placeholder="Type your answer..." autocomplete="off" /><div class="arena-feedback hidden" id="arenaFeedback"></div><div class="arena-actions"><button class="secondary-button" id="arenaHintButton">SHOW HINT</button><button class="primary-button" id="arenaSubmitButton">SUBMIT ANSWER</button><button class="primary-button hidden" id="arenaNextButton">NEXT QUESTION</button></div></div>
+              <div class="arena-result hidden" id="arenaResult"><div class="victory-badge">⚔</div><h3 id="arenaResultTitle">Battle complete</h3><p id="arenaResultText"></p><div class="result-score" id="arenaResultScore">0 / 5</div><button class="primary-button" id="arenaReplayButton">BATTLE AGAIN</button></div>
+            </article>
+            <aside class="arena-side">
+              <article class="pixel-panel panel-padding"><span class="section-kicker">BATTLE STATS</span><div class="summary-list"><div><span>Accuracy</span><strong id="arenaAccuracy">0%</strong></div><div><span>Best combo</span><strong id="arenaBestCombo">0x</strong></div><div><span>Battles won</span><strong id="arenaWins">0</strong></div></div></article>
+              <article class="pixel-panel panel-padding"><div class="panel-header"><div><span class="section-kicker">QUESTION BANK</span><h3>Build Your Arena</h3></div></div><p class="muted-copy">Questions should test facts, procedures, or explanations—not trivia you do not need.</p><button class="secondary-button full-width" id="addQuestionButton">+ ADD QUESTION</button><div class="card-list question-bank-list" id="questionBankList"></div></article>
+            </aside>
+          </div>
+        </section>
+
+        <section class="page" data-page="planner">
+          <div class="planner-header pixel-panel"><button class="icon-button" id="prevWeek" aria-label="Previous week">←</button><div><span class="section-kicker">WEEKLY MAP</span><h2 id="plannerRange">This Week</h2></div><button class="icon-button" id="nextWeek" aria-label="Next week">→</button><div class="planner-header-spacer"></div><button class="secondary-button" id="todayButton">TODAY</button><button class="primary-button" id="addSessionButton">+ ADD SESSION</button></div>
+          <div class="planner-insights" id="plannerInsights"></div>
+          <div class="calendar-shell pixel-panel"><div class="calendar-grid" id="calendarGrid"></div></div>
+        </section>
+
+        <section class="page" data-page="subjects">
+          <div class="page-toolbar pixel-panel"><div><span class="section-kicker">KNOWLEDGE MAP</span><h2>Your Subjects</h2></div><button class="primary-button" id="addSubjectButton">+ ADD SUBJECT</button></div>
+          <div class="subject-grid" id="subjectGrid"></div>
+        </section>
+
+        <section class="page" data-page="notes">
+          <div class="notes-layout">
+            <aside class="notes-sidebar pixel-panel"><div class="notes-sidebar-head"><div><span class="section-kicker">MEMORY BANK</span><h2>Notes</h2></div><button class="icon-button" id="addNoteButton" aria-label="Add note">+</button></div><div class="notes-search"><input class="pixel-input" id="notesSearch" aria-label="Search notes" placeholder="Search notes..." /></div><div class="note-list" id="noteList"></div></aside>
+            <article class="note-editor pixel-panel"><div class="empty-editor" id="emptyEditor"><div class="empty-icon">✦</div><h3>Select a note</h3><p>Choose a note or create a new one.</p></div><div class="editor-content hidden" id="editorContent"><div class="editor-toolbar"><input id="noteTitleInput" class="title-input" aria-label="Note title" placeholder="Untitled note" maxlength="240" /><div class="toolbar-group"><button class="secondary-button" id="recallModeButton">RECALL MODE</button><button class="danger-button" id="deleteNoteButton">DELETE</button></div></div><div class="editor-meta"><select id="noteSubjectSelect" class="pixel-input" aria-label="Note subject"></select><span id="noteSavedStatus">SAVED</span></div><textarea id="noteBodyInput" class="note-body-input" aria-label="Note body" placeholder="Write your note here..." maxlength="50000"></textarea><div class="recall-panel hidden" id="recallPanel"><div class="panel-header"><div><span class="section-kicker">BLIND RETRIEVAL</span><h3>Write what you remember</h3></div><button class="icon-button" id="closeRecallMode" aria-label="Close recall mode">×</button></div><textarea class="pixel-input recall-input" id="recallInput" aria-label="Recall attempt" placeholder="Reconstruct the note without looking..."></textarea><button class="primary-button" id="revealNoteButton">REVEAL ORIGINAL</button><div class="recall-original hidden" id="recallOriginal"></div></div></div></article>
+          </div>
+        </section>
+
+        <section class="page" data-page="library">
+          <div class="page-toolbar pixel-panel"><div><span class="section-kicker">RESOURCE VAULT</span><h2>Study Library</h2></div><div class="toolbar-group"><input class="pixel-input compact-input" id="librarySearch" aria-label="Search resources" placeholder="Search resources..." /><button class="primary-button" id="addResourceButton">+ ADD RESOURCE</button></div></div>
+          <div class="library-grid" id="libraryGrid"></div>
+          <div class="empty-state pixel-panel hidden" id="libraryEmptyState"><div class="empty-icon">▧</div><h3>No resources found</h3><p>Add documentation, books, courses, or local references.</p></div>
+        </section>
+
+        <section class="page" data-page="stats">
+          <div class="stats-hero-grid"><article class="pixel-panel panel-padding"><span class="section-kicker">TOTAL FOCUS</span><strong class="mega-number" id="statsTotalFocus">0h</strong><span>All-time focused study</span></article><article class="pixel-panel panel-padding"><span class="section-kicker">QUEST CLEAR RATE</span><strong class="mega-number" id="statsClearRate">0%</strong><span>Completed versus created</span></article><article class="pixel-panel panel-padding"><span class="section-kicker">RECALL RETENTION</span><strong class="mega-number" id="statsRetention">0%</strong><span>Flashcard memory estimate</span></article><article class="pixel-panel panel-padding"><span class="section-kicker">ARENA ACCURACY</span><strong class="mega-number" id="statsArenaAccuracy">0%</strong><span>Typed recall performance</span></article></div>
+          <div class="stats-grid-main"><article class="pixel-panel panel-padding chart-panel"><div class="panel-header"><div><span class="section-kicker">LAST 14 DAYS</span><h3>Focus Activity</h3></div></div><div class="bar-chart" id="focusChart"></div></article><article class="pixel-panel panel-padding"><div class="panel-header"><div><span class="section-kicker">SUBJECT BALANCE</span><h3>Learning Progress</h3></div></div><div class="subject-progress-list" id="subjectProgressList"></div></article><article class="pixel-panel panel-padding achievements-panel"><div class="panel-header"><div><span class="section-kicker">ACHIEVEMENTS</span><h3>Badge Grid</h3></div></div><div class="achievement-grid" id="achievementGrid"></div></article><article class="pixel-panel panel-padding"><div class="panel-header"><div><span class="section-kicker">WEEKLY REVIEW</span><h3>System Diagnosis</h3></div></div><div class="diagnosis-list" id="diagnosisList"></div></article></div>
+        </section>
+
+        <section class="page" data-page="settings">
+          <div class="settings-grid">
+            <article class="pixel-panel panel-padding settings-card"><div><span class="section-kicker">PROFILE</span><h3>Player Identity</h3></div><label class="field-label">Display name<input class="pixel-input" id="settingsName" maxlength="20" /></label><label class="field-label">Avatar code<input class="pixel-input" id="settingsAvatar" maxlength="2" /></label><label class="field-label">Daily focus goal<input class="pixel-input" id="settingsGoal" type="number" min="15" max="600" step="15" /></label><button class="primary-button" id="saveSettingsButton">SAVE PROFILE</button></article>
+            <article class="pixel-panel panel-padding settings-card"><div><span class="section-kicker">SYSTEM</span><h3>Interface & Accessibility</h3></div><label class="field-label">Theme<select class="pixel-input" id="themeSelect"><option value="dark">Dark</option><option value="light">Light</option><option value="system">Use system setting</option></select></label><label class="field-label">Language and direction<select class="pixel-input" id="languageSelect"><option value="en">English · LTR</option><option value="ar">العربية · RTL</option></select></label><label class="field-label">Time zone<select class="pixel-input" id="timezoneSelect"></select></label><div class="setting-row"><div><strong>High contrast</strong><span>Increase borders and text separation.</span></div><button class="toggle" id="contrastToggle" aria-label="Toggle high contrast" aria-pressed="false"><span></span></button></div><div class="setting-row"><div><strong>Reduced motion</strong><span>Disable decorative animation.</span></div><button class="toggle" id="motionToggle" aria-label="Toggle reduced motion" aria-pressed="false"><span></span></button></div><div class="setting-row"><div><strong>Sound feedback</strong><span>Subtle synthesized UI sounds.</span></div><button class="toggle" id="soundToggle" aria-label="Toggle sound feedback" aria-pressed="false"><span></span></button></div><div class="setting-row"><div><strong>Compact interface</strong><span>Fit more information on screen.</span></div><button class="toggle" id="compactToggle" aria-label="Toggle compact interface" aria-pressed="false"><span></span></button></div></article>
+            <article class="pixel-panel panel-padding settings-card cloud-account-card"><div><span class="section-kicker">CLOUD ACCOUNT</span><h3>Secure Sync</h3></div><div class="cloud-account-status"><span class="cloud-status-dot"></span><div><strong id="cloudAccountTitle">Local-only mode</strong><span id="cloudAccountDetail">Configure Supabase to enable accounts and cross-device sync.</span></div></div><div class="button-stack" id="cloudSignedOutActions"><button class="primary-button" id="cloudSignInButton">SIGN IN</button><button class="secondary-button" id="cloudSignUpButton">CREATE ACCOUNT</button><button class="secondary-button" id="cloudResetPasswordButton">RESET PASSWORD</button></div><div class="button-stack hidden" id="cloudSignedInActions"><button class="primary-button" id="cloudSyncNowButton">SYNC NOW</button><button class="secondary-button hidden" id="copyLocalProfileButton">COPY ANONYMOUS PROFILE</button><button class="secondary-button hidden" id="cloudCancelDeletionButton">CANCEL SCHEDULED DELETION</button><button class="secondary-button" id="cloudSignOutButton">SIGN OUT</button><button class="danger-button" id="cloudDeleteAccountButton">SCHEDULE ACCOUNT DELETION</button></div><p class="muted-copy" id="cloudSecurityNote">Account and anonymous profiles are isolated. Sessions are stored only for this browser tab. Cloud transport uses HTTPS; database access is enforced by Row Level Security. Export a backup before relying on any cloud service.</p><p class="muted-copy"><a href="docs/PRIVACY.md" target="_blank" rel="noopener noreferrer">Read the privacy, retention, export, and deletion explanation</a>.</p></article>
+            <article class="pixel-panel panel-padding settings-card"><div><span class="section-kicker">DATA</span><h3>Backup, Restore & Reset</h3></div><p class="muted-copy">Imports and restores never replace the active profile until a verified backup succeeds. Cloud sync is not a substitute for exported files.</p><div class="button-stack"><button class="secondary-button" id="backupManagerButton">OPEN BACKUP MANAGER</button><button class="secondary-button" id="exportDataButton">EXPORT DATA</button><label class="secondary-button file-button">IMPORT DATA<input type="file" id="importDataInput" accept="application/json,.json" /></label><button class="danger-button" id="resetDataButton">RESET ALL DATA</button></div></article>
+            <article class="pixel-panel panel-padding settings-card"><div><span class="section-kicker">GUIDE</span><h3>How To Use This System</h3></div><ol class="guide-list"><li>Create tasks that can be finished in one sitting.</li><li>Run a focus session against one clear target.</li><li>Review flashcards using honest ratings.</li><li>Use the Arena to test typed recall.</li><li>Review stats weekly and change the plan.</li></ol></article>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <div class="modal-backdrop hidden" id="modalBackdrop" role="presentation"><div class="modal pixel-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-header"><div><span class="section-kicker" id="modalKicker">NEW ENTRY</span><h2 id="modalTitle">Create</h2></div><button class="icon-button" id="closeModalButton" aria-label="Close">×</button></div><form id="modalForm" class="modal-form"></form></div></div>
+
+  <div class="search-overlay hidden" id="searchOverlay" role="dialog" aria-modal="true" aria-labelledby="searchDialogTitle"><div class="search-box pixel-panel"><div class="search-head"><span id="searchDialogTitle">COMMAND SEARCH</span><button class="icon-button" id="closeSearchButton" aria-label="Close search">×</button></div><input id="globalSearchInput" class="pixel-input search-large" aria-label="Search all study data" placeholder="Search quests, cards, notes, questions, resources..." autocomplete="off" /><div class="search-results" id="searchResults"></div><div class="search-hint"><span>↑ ↓ Navigate</span><span>Enter Open</span><span>Esc Close</span></div></div></div>
+
+  <div class="notification-panel pixel-panel hidden" id="notificationPanel" role="dialog" aria-modal="false" aria-labelledby="notificationTitle"><div class="panel-header"><div><span class="section-kicker">SYSTEM FEED</span><h3 id="notificationTitle">Notifications</h3></div><button class="icon-button" id="closeNotifications" aria-label="Close notifications">×</button></div><div class="notification-list" id="notificationList"></div></div>
+  <div class="toast-region" id="toastRegion" aria-live="polite" aria-atomic="false"></div>
+  <div class="update-banner hidden" id="updateBanner" role="status"><span>A safer application update is ready.</span><div><button class="primary-button" id="applyUpdateButton">UPDATE NOW</button><button class="secondary-button" id="dismissUpdateButton">LATER</button></div></div>
+
+  <script src="config.js"></script>
+  <script src="backend.js"></script>
+  <script src="storage.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

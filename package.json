@@ -1,0 +1,29 @@
+{
+  "name": "bawsala-study-os",
+  "version": "4.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "npm run lint && npm run test",
+    "lint": "eslint src tests scripts",
+    "test": "vitest run && python3 tests/static-smoke.py && node tests/backend-smoke.mjs",
+    "test:unit": "vitest run",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "2.110.4"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.31.0",
+    "esbuild": "0.25.6",
+    "eslint": "9.31.0",
+    "fake-indexeddb": "6.2.5",
+    "jsdom": "26.1.0",
+    "prettier": "3.6.2",
+    "vitest": "3.2.7"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

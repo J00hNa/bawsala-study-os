@@ -1,0 +1,34 @@
+Bawsala Study OS 4.0 — Delivery Manifest
+Generated: 2026-07-14
+
+Verified commands:
+  npm ci
+  npm run build
+  npm run check
+  npm audit --audit-level=low
+
+Results:
+  ESLint: pass
+  Vitest: 6/6 pass
+  Static smoke: pass
+  Backend smoke: pass
+  npm audit: 0 known vulnerabilities
+  Secret scan: pass (placeholders/test origins only)
+
+Not verified in this environment:
+  Live Supabase migrations/RLS/SMTP/Turnstile/Cron/Edge Functions
+  Reliable Chromium end-to-end session
+  Load test and authorized penetration test on staging
+
+Production asset SHA-256:
+380284f1addc3ef2b5465ddb013973c9611bb14e18f25c5dd6d5e8673f1c2505  assets/app-HQYHTZF5.js
+765e90b8ffb3da372db5b8193d8267864352a64330e9e932615925d1d96bfc55  assets/backend-UWOZIXJA.js
+0fd42d7270056351c7de93c92bdc1d29722156e0c5adcf37a48f5b8e9a26881a  assets/favicon.svg
+c6ae05b528cd0a4c0df2d7fb1437ed845f919a9914326e6a7476919fd1575754  assets/icon-192.png
+1029785d3e761da9b786a5155c0e07c3f37f47c5bc8b6cdda602addc6adc78ed  assets/icon-512.png
+0df4475aa92592badbef9940f5fa86eaa8d739482ba3ad42f88c1e1090fbce5d  assets/icon-maskable-512.png
+eb32d91772573242abf64bf8814a274d4a1d857e92183187649634a2e1b87023  assets/storage-W45UCEHX.js
+5b39e3d8ec0cd3c1b2dad9d9863262dee55e61a0f81611b79aee4f6da82c5997  assets/styles-VQ3OOGVL.css
+
+Lockfile SHA-256:
+b6ac50cc297b014f0aa39d34c9cdc1494b0b6825e770b89b90b1359b64deaf3b  package-lock.json

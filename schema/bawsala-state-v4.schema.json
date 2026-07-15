@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bawsala.local/schema/state-v4.json",
+  "title": "Bawsala Study OS state v4",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion", "meta", "profile", "quests", "subjects", "sessions", "focusLog",
+    "notes", "resources", "cards", "reviewLog", "questions", "arenaRuns",
+    "challengeClaims", "settings", "notifications"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 4 },
+    "meta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["createdAt", "updatedAt"],
+      "properties": {
+        "createdAt": { "type": "integer", "minimum": 0 },
+        "updatedAt": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "avatar", "totalXp", "credits", "dailyGoal"],
+      "properties": {
+        "name": { "type": "string", "maxLength": 20 },
+        "avatar": { "type": "string", "maxLength": 2 },
+        "totalXp": { "type": "integer", "minimum": 0, "maximum": 1000000000 },
+        "credits": { "type": "integer", "minimum": 0, "maximum": 1000000000 },
+        "dailyGoal": { "type": "integer", "minimum": 15, "maximum": 600 }
+      }
+    },
+    "quests": { "type": "array", "maxItems": 400, "items": { "$ref": "#/$defs/quest" } },
+    "subjects": { "type": "array", "maxItems": 100, "items": { "$ref": "#/$defs/subject" } },
+    "sessions": { "type": "array", "maxItems": 1000, "items": { "$ref": "#/$defs/session" } },
+    "focusLog": { "type": "array", "maxItems": 5000, "items": { "$ref": "#/$defs/focusEntry" } },
+    "notes": { "type": "array", "maxItems": 300, "items": { "$ref": "#/$defs/note" } },
+    "resources": { "type": "array", "maxItems": 1000, "items": { "$ref": "#/$defs/resource" } },
+    "cards": { "type": "array", "maxItems": 5000, "items": { "$ref": "#/$defs/card" } },
+    "reviewLog": { "type": "array", "maxItems": 15000, "items": { "$ref": "#/$defs/reviewEntry" } },
+    "questions": { "type": "array", "maxItems": 2000, "items": { "$ref": "#/$defs/question" } },
+    "arenaRuns": { "type": "array", "maxItems": 3000, "items": { "$ref": "#/$defs/arenaRun" } },
+    "challengeClaims": { "type": "array", "maxItems": 1000, "items": { "$ref": "#/$defs/date" } },
+    "settings": { "$ref": "#/$defs/settings" },
+    "notifications": { "type": "array", "maxItems": 100, "items": { "$ref": "#/$defs/notification" } }
+  },
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[A-Za-z0-9_-]{1,128}$" },
+    "date": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+    "time": { "type": "string", "pattern": "^(?:[01]\\d|2[0-3]):[0-5]\\d$" },
+    "subject": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "name", "symbol", "description", "progress", "color"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" }, "name": { "type": "string", "maxLength": 100 },
+        "symbol": { "type": "string", "maxLength": 3 }, "description": { "type": "string", "maxLength": 1500 },
+        "progress": { "type": "integer", "minimum": 0, "maximum": 100 }, "color": { "enum": ["purple", "blue", "green"] }
+      }
+    },
+    "quest": {
+      "type": "object", "required": ["id", "title", "description", "subjectId", "subject", "priority", "duration", "xp", "dueDate", "steps", "completed", "rewarded", "createdAt", "completedAt"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" }, "title": { "type": "string", "maxLength": 180 }, "description": { "type": "string", "maxLength": 2000 },
+        "subjectId": { "type": "string", "maxLength": 128 }, "subject": { "type": "string", "maxLength": 100 }, "priority": { "enum": ["high", "medium", "low"] },
+        "duration": { "type": "integer", "minimum": 5, "maximum": 480 }, "xp": { "type": "integer", "minimum": 0, "maximum": 1000 },
+        "dueDate": { "$ref": "#/$defs/date" }, "steps": { "type": "array", "maxItems": 50 }, "completed": { "type": "boolean" }, "rewarded": { "type": "boolean" },
+        "createdAt": { "type": "integer", "minimum": 0 }, "completedAt": { "type": ["integer", "null"], "minimum": 0 }
+      }
+    },
+    "session": {
+      "type": "object", "required": ["id", "title", "subjectId", "subject", "questId", "color", "date", "time", "duration"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" }, "title": { "type": "string", "maxLength": 180 }, "subjectId": { "type": "string", "maxLength": 128 },
+        "subject": { "type": "string", "maxLength": 100 }, "questId": { "type": "string", "maxLength": 128 }, "color": { "enum": ["purple", "blue", "green"] },
+        "date": { "$ref": "#/$defs/date" }, "time": { "$ref": "#/$defs/time" }, "duration": { "type": "integer", "minimum": 5, "maximum": 480 }
+      }
+    },
+    "focusEntry": { "type": "object", "required": ["id", "date", "startedAt", "endedAt", "minutes", "mode", "questId", "xp", "distractions"] },
+    "note": { "type": "object", "required": ["id", "title", "subjectId", "subject", "body", "updatedAt"] },
+    "resource": { "type": "object", "required": ["id", "title", "subjectId", "subject", "type", "url", "description", "tags"] },
+    "card": { "type": "object", "required": ["id", "front", "back", "subjectId", "subject", "ease", "interval", "repetitions", "dueDate", "dueAt", "createdAt", "updatedAt"] },
+    "reviewEntry": { "type": "object", "required": ["id", "cardId", "date", "reviewedAt", "rating", "correct", "subjectId", "subject"] },
+    "question": { "type": "object", "required": ["id", "prompt", "answer", "subjectId", "subject", "createdAt", "updatedAt"] },
+    "arenaRun": { "type": "object", "required": ["id", "date", "startedAt", "completedAt", "subjectId", "subject", "correct", "total", "bestCombo", "answers"] },
+    "settings": {
+      "type": "object", "additionalProperties": false,
+      "required": ["reducedMotion", "sound", "compact", "highContrast", "theme", "language", "timeZone", "onboardingDone"],
+      "properties": {
+        "reducedMotion": { "type": "boolean" }, "sound": { "type": "boolean" }, "compact": { "type": "boolean" }, "highContrast": { "type": "boolean" },
+        "theme": { "enum": ["dark", "light", "system"] }, "language": { "enum": ["en", "ar"] }, "timeZone": { "type": "string", "maxLength": 80 }, "onboardingDone": { "type": "boolean" }
+      }
+    },
+    "notification": { "type": "object", "required": ["id", "title", "message", "createdAt", "read", "time"] }
+  }
+}

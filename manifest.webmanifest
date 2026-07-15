@@ -1,0 +1,26 @@
+{
+  "id": "./",
+  "name": "Bawsala Study OS",
+  "short_name": "Bawsala",
+  "description": "A privacy-conscious study planner for focus sessions, active recall, notes, and review.",
+  "start_url": "./index.html#dashboard",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
+  "orientation": "any",
+  "background_color": "#070812",
+  "theme_color": "#080912",
+  "lang": "en",
+  "dir": "auto",
+  "categories": ["education", "productivity"],
+  "icons": [
+    { "src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "assets/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ],
+  "shortcuts": [
+    { "name": "Start focus", "short_name": "Focus", "url": "./index.html#focus", "icons": [{ "src": "assets/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Review cards", "short_name": "Review", "url": "./index.html#flashcards", "icons": [{ "src": "assets/icon-192.png", "sizes": "192x192" }] }
+  ]
+}
